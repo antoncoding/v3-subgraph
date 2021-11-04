@@ -8,7 +8,7 @@ import {
 } from '../types/NonfungiblePositionManager/NonfungiblePositionManager'
 import { Position, PositionSnapshot, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ZERO_BD, ZERO_BI } from '../utils/constants'
-import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts'
+import { Address, BigInt, ethereum, log } from '@graphprotocol/graph-ts'
 import { convertTokenToDecimal, loadTransaction } from '../utils'
 
 function getPosition(event: ethereum.Event, tokenId: BigInt): Position | null {
@@ -23,7 +23,11 @@ function getPosition(event: ethereum.Event, tokenId: BigInt): Position | null {
     // (e.g. 0xf7867fa19aa65298fadb8d4f72d0daed5e836f3ba01f0b9b9631cdc6c36bed40)
     if (!positionCall.reverted) {
       let positionResult = positionCall.value
+      log.info(`Pool Get position called {} {}`, [positionResult.value2.toHexString(), positionResult.value3.toHexString()])
       let poolAddress = factoryContract.getPool(positionResult.value2, positionResult.value3, positionResult.value4)
+      log.info('Pool Fee {}', [positionResult.value4.toString()])
+      log.info('Pool address123 {}', [poolAddress.toHexString()])
+      log.info('Pool address1234 {}', [poolAddress.toHexString()])
 
       position = new Position(tokenId.toString())
       // The owner gets correctly updated in the Transfer handler
