@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: ropsten
+    network: arbitrum-rinkeby
     source:
-      address: '0xa9C2f675FF8290494675dF5CFc2733319EaeeFDc'
+      address: '0x1F98431c8aD98523631AE4a59f267346ea31F984'
       abi: Factory
-      startBlock: 8845990
+      startBlock: 117083
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -35,11 +35,11 @@ dataSources:
           handler: handlePoolCreated
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: ropsten
+    network: arbitrum-rinkeby
     source:
-      address: '0x8c7C1F786dA4DEe7d4bB49697A9B0C0c8Fb328e0'
+      address: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88'
       abi: NonfungiblePositionManager
-      startBlock: 8845990
+      startBlock: 117105
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -69,7 +69,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: ropsten
+    network: arbitrum-rinkeby
     source:
       abi: Pool
     mapping:
